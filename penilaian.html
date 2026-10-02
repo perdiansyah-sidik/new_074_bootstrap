@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIAKAD - Transaksi Penilaian Mahasiswa</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SIAKAD <sup>APP</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Master Data
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="prodi.html">
+                    <i class="fas fa-fw fa-university"></i>
+                    <span>Master Data Prodi</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="mahasiswa.html">
+                    <i class="fas fa-fw fa-user-graduate"></i>
+                    <span>Master Data Mahasiswa</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Transaksi
+            </div>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="penilaian.html">
+                    <i class="fas fa-fw fa-calculator"></i>
+                    <span>Transaksi Penilaian</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Dr. Dosen Pengampuh, M.Kom</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <!-- Page Heading -->
+                        <h1 class="h3 mb-2 text-gray-800">
+                            <i class="fas fa-calculator m-0 font-weight-bold text-primary"></i>
+                            Transaksi Penilaian Mahasiswa
+                        </h1>
+                        <a href="#" id="btnTambah" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                            <i class="fas fa-plus-circle fa-sm text-white-50"></i> Input Penilaian Baru
+                        </a>
+                    </div>
+
+                    <!-- DataTales -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Rekapitulasi Nilai Akhir &amp; Grade Mahasiswa</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Kode TRX</th>
+                                            <th>NIM</th>
+                                            <th>Nama Mahasiswa</th>
+                                            <th>Mata Kuliah</th>
+                                            <th>Tugas (30%)</th>
+                                            <th>UTS (30%)</th>
+                                            <th>UAS (40%)</th>
+                                            <th>Nilai Akhir</th>
+                                            <th>Grade</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="badge badge-light border text-dark">TRX-001</span></td>
+                                            <td>230101001</td>
+                                            <td class="font-weight-bold text-gray-800">Aditya Pratama</td>
+                                            <td>Pemrograman Web</td>
+                                            <td>85</td>
+                                            <td>80</td>
+                                            <td>90</td>
+                                            <td class="font-weight-bold text-primary">85.5</td>
+                                            <td><span class="badge badge-success px-2 py-2">A</span></td>
+                                            <td><span class="badge badge-success">Lulus</span></td>
+                                            <td class="text-center" style="white-space: nowrap;">
+                                                <a href="#" class="btn btn-secondary btn-sm btn-cetak" title="Cetak"><i class="fas fa-print"></i></a>
+                                                <a href="#" class="btn btn-info btn-sm btn-edit" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-danger btn-sm btn-hapus" title="Hapus"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge badge-light border text-dark">TRX-002</span></td>
+                                            <td>230101002</td>
+                                            <td class="font-weight-bold text-gray-800">Siti Nurhaliza</td>
+                                            <td>Pemrograman Web</td>
+                                            <td>90</td>
+                                            <td>88</td>
+                                            <td>92</td>
+                                            <td class="font-weight-bold text-primary">90.2</td>
+                                            <td><span class="badge badge-success px-2 py-2">A</span></td>
+                                            <td><span class="badge badge-success">Lulus</span></td>
+                                            <td class="text-center" style="white-space: nowrap;">
+                                                <a href="#" class="btn btn-secondary btn-sm btn-cetak" title="Cetak"><i class="fas fa-print"></i></a>
+                                                <a href="#" class="btn btn-info btn-sm btn-edit" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-danger btn-sm btn-hapus" title="Hapus"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge badge-light border text-dark">TRX-003</span></td>
+                                            <td>230102001</td>
+                                            <td class="font-weight-bold text-gray-800">Bagas Rahadian</td>
+                                            <td>Basis Data</td>
+                                            <td>75</td>
+                                            <td>70</td>
+                                            <td>68</td>
+                                            <td class="font-weight-bold text-primary">70.7</td>
+                                            <td><span class="badge badge-info px-2 py-2">B</span></td>
+                                            <td><span class="badge badge-success">Lulus</span></td>
+                                            <td class="text-center" style="white-space: nowrap;">
+                                                <a href="#" class="btn btn-secondary btn-sm btn-cetak" title="Cetak"><i class="fas fa-print"></i></a>
+                                                <a href="#" class="btn btn-info btn-sm btn-edit" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-danger btn-sm btn-hapus" title="Hapus"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge badge-light border text-dark">TRX-004</span></td>
+                                            <td>230103001</td>
+                                            <td class="font-weight-bold text-gray-800">Dewi Anggraini</td>
+                                            <td>Jaringan Komputer</td>
+                                            <td>60</td>
+                                            <td>55</td>
+                                            <td>50</td>
+                                            <td class="font-weight-bold text-primary">54.5</td>
+                                            <td><span class="badge badge-danger px-2 py-2">D</span></td>
+                                            <td><span class="badge badge-danger">Tidak Lulus</span></td>
+                                            <td class="text-center" style="white-space: nowrap;">
+                                                <a href="#" class="btn btn-secondary btn-sm btn-cetak" title="Cetak"><i class="fas fa-print"></i></a>
+                                                <a href="#" class="btn btn-info btn-sm btn-edit" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-danger btn-sm btn-hapus" title="Hapus"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge badge-light border text-dark">TRX-005</span></td>
+                                            <td>230104001</td>
+                                            <td class="font-weight-bold text-gray-800">Fajar Ramadan</td>
+                                            <td>Kecerdasan Buatan</td>
+                                            <td>88</td>
+                                            <td>85</td>
+                                            <td>90</td>
+                                            <td class="font-weight-bold text-primary">87.9</td>
+                                            <td><span class="badge badge-success px-2 py-2">A</span></td>
+                                            <td><span class="badge badge-success">Lulus</span></td>
+                                            <td class="text-center" style="white-space: nowrap;">
+                                                <a href="#" class="btn btn-secondary btn-sm btn-cetak" title="Cetak"><i class="fas fa-print"></i></a>
+                                                <a href="#" class="btn btn-info btn-sm btn-edit" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-danger btn-sm btn-hapus" title="Hapus"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>SIAKAD &copy; Transaksi Penilaian Mahasiswa 2026</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Modal Form Penilaian -->
+    <div class="modal fade" id="modalPenilaian" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form id="formPenilaian" class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title font-weight-bold" id="modalTitle">Form Input Transaksi Penilaian</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="trxMode">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="mahasiswa" class="font-weight-bold">Pilih Mahasiswa</label>
+                            <select class="form-control" id="mahasiswa" required>
+                                <option value="">-- Pilih Mahasiswa --</option>
+                                <option value="230101001">230101001 - Aditya Pratama</option>
+                                <option value="230101002">230101002 - Siti Nurhaliza</option>
+                                <option value="230102001">230102001 - Bagas Rahadian</option>
+                                <option value="230103001">230103001 - Dewi Anggraini</option>
+                                <option value="230104001">230104001 - Fajar Ramadan</option>
+                                <option value="230101003">230101003 - Gita Savitri</option>
+                                <option value="230102002">230102002 - Hendra Gunawan</option>
+                                <option value="230103002">230103002 - Intan Permata</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="matkul" class="font-weight-bold">Mata Kuliah</label>
+                            <select class="form-control" id="matkul" required>
+                                <option value="Pemrograman Web">Pemrograman Web</option>
+                                <option value="Basis Data">Basis Data</option>
+                                <option value="Jaringan Komputer">Jaringan Komputer</option>
+                                <option value="Algoritma & Struktur Data">Algoritma &amp; Struktur Data</option>
+                                <option value="Kecerdasan Buatan">Kecerdasan Buatan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info border-left-info py-2 small">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        <strong>Formula Kelulusan:</strong> Nilai Akhir = (30% x Tugas) + (30% x UTS) + (40% x UAS).
+                        Nilai Akhir &ge; 55 dinyatakan <strong>LULUS</strong>.
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="tugas" class="font-weight-bold d-block text-center">Nilai Tugas (30%)</label>
+                            <input type="number" min="0" max="100" class="form-control text-center nilai-input" id="tugas" value="80" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="uts" class="font-weight-bold d-block text-center">Nilai UTS (30%)</label>
+                            <input type="number" min="0" max="100" class="form-control text-center nilai-input" id="uts" value="80" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="uas" class="font-weight-bold d-block text-center">Nilai UAS (40%)</label>
+                            <input type="number" min="0" max="100" class="form-control text-center nilai-input" id="uas" value="80" required>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Hasil perhitungan otomatis -->
+                    <div class="row text-center bg-light rounded py-3 mx-0">
+                        <div class="col-md-4">
+                            <div class="small font-weight-bold text-gray-700 text-uppercase">Estimasi Nilai Akhir</div>
+                            <div class="h2 font-weight-bold text-primary mb-0" id="hasilNilai">80</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="small font-weight-bold text-gray-700 text-uppercase mb-2">Grade Kelulusan</div>
+                            <span class="badge badge-info px-3 py-2" style="font-size: 1rem;" id="hasilGrade">B+</span>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="small font-weight-bold text-gray-700 text-uppercase mb-2">Status</div>
+                            <span class="badge badge-success px-3 py-2 text-uppercase" style="font-size: .85rem;" id="hasilStatus">Lulus</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan Transaksi Penilaian</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts (CRUD statis) -->
+    <script>
+    $(document).ready(function () {
+
+        // DataTable biasa, kolom Aksi tidak bisa di-sort
+        $('#dataTable').DataTable({
+            columnDefs: [{ orderable: false, targets: 10 }]
+        });
+
+        // ---------- Hitung nilai akhir, grade, status ----------
+        function hitung() {
+            var tugas = parseFloat($('#tugas').val()) || 0;
+            var uts   = parseFloat($('#uts').val()) || 0;
+            var uas   = parseFloat($('#uas').val()) || 0;
+
+            var akhir = Math.round((0.3 * tugas + 0.3 * uts + 0.4 * uas) * 10) / 10;
+
+            var grade, warna;
+            if (akhir >= 85)      { grade = 'A';  warna = 'success'; }
+            else if (akhir >= 75) { grade = 'B+'; warna = 'info'; }
+            else if (akhir >= 65) { grade = 'B';  warna = 'info'; }
+            else if (akhir >= 55) { grade = 'C';  warna = 'warning'; }
+            else if (akhir >= 45) { grade = 'D';  warna = 'danger'; }
+            else                  { grade = 'E';  warna = 'danger'; }
+
+            var lulus = akhir >= 55;
+
+            $('#hasilNilai').text(akhir);
+            $('#hasilGrade').text(grade).attr('class', 'badge px-3 py-2 badge-' + warna);
+            $('#hasilStatus')
+                .text(lulus ? 'Lulus' : 'Tidak Lulus')
+                .attr('class', 'badge px-3 py-2 text-uppercase badge-' + (lulus ? 'success' : 'danger'));
+        }
+
+        $('.nilai-input').on('input change', hitung);
+
+        // ---------- Tambah ----------
+        $('#btnTambah').on('click', function (e) {
+            e.preventDefault();
+            $('#formPenilaian')[0].reset();
+            $('#trxMode').val('');
+            $('#modalTitle').text('Form Input Transaksi Penilaian');
+            hitung();
+            $('#modalPenilaian').modal('show');
+        });
+
+        // ---------- Edit (isi form dari baris yang diklik) ----------
+        $('#dataTable').on('click', '.btn-edit', function (e) {
+            e.preventDefault();
+            var td = $(this).closest('tr').children('td');
+
+            $('#trxMode').val('edit');
+            $('#mahasiswa').val(td.eq(1).text().trim());
+            $('#matkul').val(td.eq(3).text().trim());
+            $('#tugas').val(td.eq(4).text().trim());
+            $('#uts').val(td.eq(5).text().trim());
+            $('#uas').val(td.eq(6).text().trim());
+
+            $('#modalTitle').text('Edit Transaksi Penilaian');
+            hitung();
+            $('#modalPenilaian').modal('show');
+        });
+
+        // ---------- Simpan (Tambah & Edit) ----------
+        $('#formPenilaian').on('submit', function (e) {
+            e.preventDefault();
+            var modeEdit = $('#trxMode').val() === 'edit';
+
+            $('#modalPenilaian').modal('hide');
+            alert(modeEdit ? 'Data berhasil diubah!' : 'Data berhasil ditambahkan!');
+        });
+
+        // ---------- Cetak ----------
+        $('#dataTable').on('click', '.btn-cetak', function (e) {
+            e.preventDefault();
+            var td = $(this).closest('tr').children('td');
+            alert('Mencetak nilai ' + td.eq(2).text().trim() + ' (' + td.eq(3).text().trim() + ')...');
+        });
+
+        // ---------- Hapus ----------
+        $('#dataTable').on('click', '.btn-hapus', function (e) {
+            e.preventDefault();
+            var td = $(this).closest('tr').children('td');
+            var kode = td.eq(0).text().trim();
+            var nama = td.eq(2).text().trim();
+
+            if (confirm('Hapus transaksi ' + kode + ' milik ' + nama + '?')) {
+                alert('Data berhasil dihapus!');
+            }
+        });
+
+        hitung();
+    });
+    </script>
+
+</body>
+
+</html>
